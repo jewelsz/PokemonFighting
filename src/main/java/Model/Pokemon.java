@@ -25,7 +25,7 @@ public class Pokemon
     {
         health = health - damage;
     }
-    
+
     //Create attacks for pokemon
     private void getAttacks()
     {

@@ -18,9 +18,10 @@ public class Attack
 //      Use every time the player attacks
     public int calculateDamage()
     {
+        //random tussen -3 en 3 -> plus avg = dmg
         Random ran = null;
-        int min = damage - 10;
-        int max = damage +10;
+        int min = damage - 3;
+        int max = damage +3;
         int dmg = ran.nextInt((max - min)+1) +min;
 
         return dmg;

@@ -8,6 +8,9 @@ public class Game
     //check turn
     //switch turn
 
+    // Client -> Server <- Client
+    // Zo kan ik PULL en push(wat niet push heet) 
+
     private Player p1;
     private Player p2;
 
