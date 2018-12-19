@@ -3,11 +3,6 @@ package Model;
 import java.security.Principal;
 import java.util.ArrayList;
 
-// SOLID
-// Algorytme- complex is 1 algo, simpel is 2
-// Multithreading
-// Pattern
-
 public class Player
 {
     private String name;

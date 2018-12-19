@@ -25,6 +25,32 @@ public class Pokemon
     {
         health = health - damage;
     }
+    
+    //Create attacks for pokemon
+    private void getAttacks()
+    {
+        AttackFactory factory = new AttackFactory();
+        switch (type)
+        {
+            case FIRE:
+                attacks = factory.createFireAttacks();
+
+            case GRASS:
+                attacks = factory.createGrassAttacks();
+
+            case WATER:
+                attacks = factory.createWaterAttacks();
+
+            case NORMAL:
+                attacks = factory.createNormalAttacks();
+
+            case POISON:
+                attacks = factory.createPoisonAttacks();
+
+            case PSYCHIC:
+                attacks = factory.createPsychicAttacks();
+        }
+    }
 
     public String getName() {
         return name;
@@ -50,28 +76,5 @@ public class Pokemon
         this.health = health;
     }
 
-    private void getAttacks()
-    {
-        AttackFactory factory = new AttackFactory();
-        switch (type)
-        {
-            case FIRE:
-                attacks = factory.createFireAttacks();
 
-            case GRASS:
-                attacks = factory.createGrassAttacks();
-
-            case WATER:
-                attacks = factory.createWaterAttacks();
-
-            case NORMAL:
-                attacks = factory.createNormalAttacks();
-
-            case POISON:
-                attacks = factory.createPoisonAttacks();
-
-            case PSYCHIC:
-                attacks = factory.createPsychicAttacks();
-        }
-    }
 }

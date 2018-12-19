@@ -4,17 +4,21 @@ import Model.Pokemon;
 import Model.ElementTypeEnum;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PokemonFactory
 {
     private ArrayList<Pokemon> createdPokemon;
+    private Random rnd;
 
     public PokemonFactory()
     {
         createdPokemon = new ArrayList<Pokemon>();
+        rnd = new Random();
+        createPokemon();
     }
 
-    public ArrayList<Pokemon> createPokemon()
+    private void createPokemon()
     {
         //Create pokemon and add to the list
         createdPokemon.add(new Pokemon("Psyduck", ElementTypeEnum.WATER));
@@ -36,7 +40,18 @@ public class PokemonFactory
         createdPokemon.add(new Pokemon("Ekans", ElementTypeEnum.POISON));
         createdPokemon.add(new Pokemon("Muk", ElementTypeEnum.POISON));
 
+    }
 
-        return createdPokemon;
+    //Get 6 random pokemon
+    public ArrayList<Pokemon> getRandomPokemon()
+    {
+        int index = rnd.nextInt(createdPokemon.size());
+        ArrayList<Pokemon> chosenPokemon = new ArrayList<Pokemon>();
+        for(int i = 0; i < 5; i++)
+        {
+            Pokemon p = createdPokemon.get(index);
+            chosenPokemon.add(p);
+        }
+        return chosenPokemon;
     }
 }
