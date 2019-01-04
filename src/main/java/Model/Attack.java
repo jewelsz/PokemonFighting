@@ -12,11 +12,12 @@ public class Attack
     {
         this.name = name;
         this.averageDamage = averageDamage;
+        calculateDamage();
     }
 
 //      Creates a random for the damage
 //      Use every time the player attacks
-    public int calculateDamage()
+    public void calculateDamage()
     {
         Random ran = null;
         int min =  3;
@@ -24,7 +25,12 @@ public class Attack
         //int dmg = ran.nextInt((max - min)+1) +averageDamage;
         int dmg = ran.nextInt(max) + min;
 
-        return dmg + averageDamage;
+
+        damage = dmg + averageDamage;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     public String toString()

@@ -61,13 +61,13 @@ public class GUIController
 
     public void switchToSelectedPokemonP1()
     {
-        game.getP1().setSummonedPokemon((Pokemon)listPokemonP1.getSelectionModel().getSelectedItem());
+        game.pokemonControllerP1.switchPokemon((Pokemon)listPokemonP1.getSelectionModel().getSelectedItem());
         summonPokemonLbl();
     }
 
     public void switchToSelectedPokemonP2()
     {
-        game.getP2().setSummonedPokemon((Pokemon)listPokemonP2.getSelectionModel().getSelectedItem());
+        game.pokemonControllerP2.switchPokemon((Pokemon)listPokemonP2.getSelectionModel().getSelectedItem());
         summonPokemonLbl();
     }
 

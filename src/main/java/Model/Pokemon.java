@@ -12,12 +12,14 @@ public class Pokemon
     private ElementTypeEnum type;
     private int health;
     private ArrayList<Attack> attacks;
+    private boolean isDead;
 
     public Pokemon(String name, ElementTypeEnum type)
     {
         this.name = name;
         this.type = type;
         health = 50;
+        isDead = false;
         setAttacks();
     }
 
@@ -52,6 +54,16 @@ public class Pokemon
         }
     }
 
+    public void takeDamage(int damage)
+    {
+        health = health - damage;
+        if(health <= 0)
+        {
+            isDead = true;
+        }
+
+    }
+
     public String toString()
     {
         return name;
@@ -74,17 +86,7 @@ public class Pokemon
         return health;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public boolean isDead() {
+        return isDead;
     }
-
-    public void setType(ElementTypeEnum type) {
-        this.type = type;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-
 }

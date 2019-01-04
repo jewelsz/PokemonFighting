@@ -1,9 +1,14 @@
 package Controller;
 
+import Factory.PokemonFactory;
+import Model.Attack;
 import Model.Player;
 
 public class Game
 {
+    public AttackController attackController = new AttackController();
+    public PokemonController pokemonControllerP1;
+    public PokemonController pokemonControllerP2;
     //switch player
     //check turn
     //switch turn
@@ -14,18 +19,29 @@ public class Game
     private Player p1;
     private Player p2;
 
-    private boolean playerTurn; //true = P1 turn
 
     public Game()
     {
         p1 = new Player("player 1");
         p2 = new Player("player 2");
-        playerTurn = true;
+        pokemonControllerP1 = new PokemonController(p1);
+        pokemonControllerP2 = new PokemonController(p2);
     }
 
+    private void createAllPokemon()
+    {
+        PokemonFactory pokemonFactory = new PokemonFactory();
+        p1.setAllPokemon(pokemonFactory.getRandomPokemon());
+        p1.setAllPokemon(pokemonFactory.getRandomPokemon());
+    }
     public void startGame()
     {
-        p1.setAllPokemon();
+        createAllPokemon();
+    }
+
+    public void playerAttacks(Attack attack)
+    {
+
     }
 
     public Player getP1() {

@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.AttackController;
 import Factory.PokemonFactory;
 
 import java.security.Principal;
@@ -7,42 +8,35 @@ import java.util.ArrayList;
 
 public class Player
 {
+    private AttackController attackController = new AttackController();
     private String name;
     private ArrayList<Pokemon> allPokemon;
     private Pokemon summonedPokemon;
-    private int pokemonAlive;
     private boolean isDefeated;
     //private boolean turn;
 
     public Player(String name)
     {
         this.name = name;
-        pokemonAlive = 6;
         isDefeated = false;
         allPokemon = new ArrayList<Pokemon>();
         createAllPokemon();
-        switchPokemon(null);
     }
 
-    public void switchPokemon(String name)
+    public void removePokemonFromList(Pokemon pokemon)
     {
-        if (name == null)
+        for(Pokemon p : allPokemon)
         {
-            summonedPokemon = getAllPokemon().get(0);
-        }
-            else
-        {
-            for (Pokemon p : allPokemon)
+            if(pokemon == p)
             {
-                if (p.getName() == name)
-                {
-                    summonedPokemon = p;
-                }
+                allPokemon.remove(p);
             }
         }
-
     }
 
+    public void setDefeated(boolean defeated) {
+        isDefeated = defeated;
+    }
 
     private void createAllPokemon()
     {
@@ -62,11 +56,9 @@ public class Player
         return allPokemon;
     }
 
-    public void setAllPokemon()
+    public void setAllPokemon(ArrayList<Pokemon>randomPokemon)
     {
-        //create and set pokemon
-        PokemonFactory pFactory = new PokemonFactory();
-        this.allPokemon = pFactory.getRandomPokemon();
+        this.allPokemon = randomPokemon;
 
     }
 
@@ -76,21 +68,5 @@ public class Player
 
     public void setSummonedPokemon(Pokemon summonedPokemon) {
         this.summonedPokemon = summonedPokemon;
-    }
-
-    public int getPokemonAlive() {
-        return pokemonAlive;
-    }
-
-    public void setPokemonAlive(int pokemonAlive) {
-        this.pokemonAlive = pokemonAlive;
-    }
-
-    public boolean isDefeated() {
-        return isDefeated;
-    }
-
-    public void setDefeated(boolean defeated) {
-        isDefeated = defeated;
     }
 }
