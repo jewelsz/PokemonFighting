@@ -1,5 +1,7 @@
 package Model;
 
+import Factory.PokemonFactory;
+
 import java.security.Principal;
 import java.util.ArrayList;
 
@@ -10,7 +12,7 @@ public class Player
     private Pokemon summonedPokemon;
     private int pokemonAlive;
     private boolean isDefeated;
-    private boolean turn;
+    //private boolean turn;
 
     public Player(String name)
     {
@@ -18,18 +20,34 @@ public class Player
         pokemonAlive = 6;
         isDefeated = false;
         allPokemon = new ArrayList<Pokemon>();
+        createAllPokemon();
+        switchPokemon(null);
     }
 
     public void switchPokemon(String name)
     {
-        for(Pokemon p : allPokemon)
+        if (name == null)
         {
-            if(p.getName() == name)
+            summonedPokemon = getAllPokemon().get(0);
+        }
+            else
+        {
+            for (Pokemon p : allPokemon)
             {
-                summonedPokemon = p;
+                if (p.getName() == name)
+                {
+                    summonedPokemon = p;
+                }
             }
         }
 
+    }
+
+
+    private void createAllPokemon()
+    {
+        PokemonFactory pokemonFactory = new PokemonFactory();
+        allPokemon = pokemonFactory.getRandomPokemon();
     }
 
     public String getName() {
@@ -44,8 +62,12 @@ public class Player
         return allPokemon;
     }
 
-    public void setAllPokemon(ArrayList<Pokemon> allPokemon) {
-        this.allPokemon = allPokemon;
+    public void setAllPokemon()
+    {
+        //create and set pokemon
+        PokemonFactory pFactory = new PokemonFactory();
+        this.allPokemon = pFactory.getRandomPokemon();
+
     }
 
     public Pokemon getSummonedPokemon() {

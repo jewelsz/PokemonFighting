@@ -18,7 +18,7 @@ public class Pokemon
         this.name = name;
         this.type = type;
         health = 50;
-        getAttacks();
+        setAttacks();
     }
 
     public void gotHit(int damage)
@@ -27,7 +27,7 @@ public class Pokemon
     }
 
     //Create attacks for pokemon
-    private void getAttacks()
+    private void setAttacks()
     {
         AttackFactory factory = new AttackFactory();
         switch (type)
@@ -50,6 +50,16 @@ public class Pokemon
             case PSYCHIC:
                 attacks = factory.createPsychicAttacks();
         }
+    }
+
+    public String toString()
+    {
+        return name;
+    }
+
+    public ArrayList<Attack> getAttacks()
+    {
+        return attacks;
     }
 
     public String getName() {

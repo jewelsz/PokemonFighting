@@ -45,12 +45,13 @@ public class PokemonFactory
     //Get 6 random pokemon
     public ArrayList<Pokemon> getRandomPokemon()
     {
-        int index = rnd.nextInt(createdPokemon.size());
         ArrayList<Pokemon> chosenPokemon = new ArrayList<Pokemon>();
         for(int i = 0; i < 5; i++)
         {
+            int index = rnd.nextInt(createdPokemon.size());
             Pokemon p = createdPokemon.get(index);
             chosenPokemon.add(p);
+            createdPokemon.remove(p);
         }
         return chosenPokemon;
     }
