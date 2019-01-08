@@ -1,11 +1,48 @@
 package Factory;
 
 import Model.Attack;
+import Model.ElementTypeEnum;
 
 import java.util.ArrayList;
 
 public class AttackFactory
 {
+    private ArrayList<Attack> attacks;
+
+    public AttackFactory(ElementTypeEnum type)
+    {
+        switch (type)
+        {
+            case FIRE:
+                attacks = createFireAttacks();
+                break;
+
+            case GRASS:
+                attacks = createGrassAttacks();
+                break;
+
+            case WATER:
+                attacks = createWaterAttacks();
+                break;
+
+            case NORMAL:
+                attacks = createNormalAttacks();
+                break;
+
+            case POISON:
+                attacks = createPoisonAttacks();
+                break;
+
+            case PSYCHIC:
+                attacks = createPsychicAttacks();
+                break;
+        }
+    }
+
+    public ArrayList<Attack> getAttacks() {
+        return attacks;
+    }
+
     public ArrayList<Attack> createFireAttacks()
     {
         ArrayList<Attack>fireAttacks = new ArrayList<Attack>();

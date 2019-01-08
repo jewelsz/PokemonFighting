@@ -66,12 +66,14 @@ public class GUIController
     {
         game.getP1().setSummonedPokemon((Pokemon)listPokemonP1.getSelectionModel().getSelectedItem());
         summonPokemonLbl();
+        fillAttackList();
     }
 
     public void switchToSelectedPokemonP2()
     {
         game.getP2().setSummonedPokemon((Pokemon)listPokemonP2.getSelectionModel().getSelectedItem());
         summonPokemonLbl();
+        fillAttackList();
     }
 
     public void p1AttackP2()

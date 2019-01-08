@@ -35,27 +35,8 @@ public class Pokemon
     //Create attacks for pokemon
     private void setAttacks()
     {
-        AttackFactory factory = new AttackFactory();
-        switch (type)
-        {
-            case FIRE:
-                attacks = factory.createFireAttacks();
-
-            case GRASS:
-                attacks = factory.createGrassAttacks();
-
-            case WATER:
-                attacks = factory.createWaterAttacks();
-
-            case NORMAL:
-                attacks = factory.createNormalAttacks();
-
-            case POISON:
-                attacks = factory.createPoisonAttacks();
-
-            case PSYCHIC:
-                attacks = factory.createPsychicAttacks();
-        }
+        AttackFactory factory = new AttackFactory(type);
+        attacks = factory.getAttacks();
     }
 
 
