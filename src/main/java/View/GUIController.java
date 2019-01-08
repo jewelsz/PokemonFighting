@@ -13,7 +13,7 @@ import javafx.scene.control.ListView;
 
 public class GUIController
 {
-    Game game;
+    Game game = new Game();
 
     @FXML
     Button btnStartGame;
@@ -27,9 +27,8 @@ public class GUIController
 
     public void startPokemonGame()
     {
-        game = new Game();
         btnStartGame.setVisible(false);
-
+        game.startGame();
         //Set labels and lists Players
         lblP1Name.setText(game.getP1().getName());
         lblP2Name.setText(game.getP2().getName());
@@ -40,11 +39,15 @@ public class GUIController
 
     private  void fillPokemonList()
     {
+        listPokemonP1.getItems().clear();
+        listPokemonP2.getItems().clear();
         listPokemonP1.getItems().addAll(game.getP1().getAllPokemon());
         listPokemonP2.getItems().addAll(game.getP2().getAllPokemon());
     }
     private void fillAttackList()
     {
+        listAttacksP1.getItems().clear();
+        listAttacksP2.getItems().clear();
         listAttacksP1.getItems().addAll(game.getP1().getSummonedPokemon().getAttacks());
         listAttacksP2.getItems().addAll(game.getP2().getSummonedPokemon().getAttacks());
     }
@@ -61,18 +64,37 @@ public class GUIController
 
     public void switchToSelectedPokemonP1()
     {
-        game.pokemonControllerP1.switchPokemon((Pokemon)listPokemonP1.getSelectionModel().getSelectedItem());
+        game.getP1().setSummonedPokemon((Pokemon)listPokemonP1.getSelectionModel().getSelectedItem());
         summonPokemonLbl();
     }
 
     public void switchToSelectedPokemonP2()
     {
-        game.pokemonControllerP2.switchPokemon((Pokemon)listPokemonP2.getSelectionModel().getSelectedItem());
+        game.getP2().setSummonedPokemon((Pokemon)listPokemonP2.getSelectionModel().getSelectedItem());
         summonPokemonLbl();
     }
 
-    public void P1AttackP2()
+    public void p1AttackP2()
     {
+        game.attackP2((Attack)listAttacksP1.getSelectionModel().getSelectedItem());
+        refreshHealthLabels();
+        fillAttackList();
+        fillPokemonList();
+        summonPokemonLbl();
+    }
 
+    public void p2AttackP1()
+    {
+        game.attackP1((Attack)listAttacksP2.getSelectionModel().getSelectedItem());
+        refreshHealthLabels();
+        fillAttackList();
+        fillPokemonList();
+        summonPokemonLbl();
+    }
+
+    private void refreshHealthLabels()
+    {
+        lblHealthP1.setText(String.valueOf(game.getP1().getSummonedPokemon().getHealth()));
+        lblHealthP2.setText(String.valueOf(game.getP2().getSummonedPokemon().getHealth()));
     }
 }

@@ -6,9 +6,6 @@ import Model.Player;
 
 public class Game
 {
-    public AttackController attackController = new AttackController();
-    public PokemonController pokemonControllerP1;
-    public PokemonController pokemonControllerP2;
     //switch player
     //check turn
     //switch turn
@@ -19,29 +16,17 @@ public class Game
     private Player p1;
     private Player p2;
 
+    private boolean playerTurn; //true = P1 turn
 
     public Game()
     {
-        p1 = new Player("player 1");
-        p2 = new Player("player 2");
-        pokemonControllerP1 = new PokemonController(p1);
-        pokemonControllerP2 = new PokemonController(p2);
+        playerTurn = true;
     }
 
-    private void createAllPokemon()
-    {
-        PokemonFactory pokemonFactory = new PokemonFactory();
-        p1.setAllPokemon(pokemonFactory.getRandomPokemon());
-        p1.setAllPokemon(pokemonFactory.getRandomPokemon());
-    }
     public void startGame()
     {
-        createAllPokemon();
-    }
-
-    public void playerAttacks(Attack attack)
-    {
-
+        p1 = new Player("player 1");
+        p2 = new Player("player 2");
     }
 
     public Player getP1() {
@@ -50,5 +35,17 @@ public class Game
 
     public Player getP2() {
         return p2;
+    }
+
+    public void attackP2(Attack attack)
+    {
+        p2.getSummonedPokemon().gotHit(attack.calculateDamage());
+        p2.checkPokemonHealth();
+    }
+
+    public void attackP1(Attack attack)
+    {
+        p1.getSummonedPokemon().gotHit(attack.calculateDamage());
+        p1.checkPokemonHealth();
     }
 }

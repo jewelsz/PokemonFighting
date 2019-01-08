@@ -33,8 +33,8 @@
             <ListView fx:id="listAttacksP2" layoutX="584.0" layoutY="202.0" prefHeight="126.0" prefWidth="263.0" />
             <Label layoutX="69.0" layoutY="380.0" text="Pokemon" />
             <Label layoutX="583.0" layoutY="380.0" text="Pokemon" />
-            <Button fx:id="btnAttackP1" layoutX="244.0" layoutY="334.0" mnemonicParsing="false" text="Attack" />
-            <Button fx:id="btnAttackP2" layoutX="782.0" layoutY="334.0" mnemonicParsing="false" text="Attack" />
+            <Button fx:id="btnAttackP1" layoutX="244.0" layoutY="334.0" mnemonicParsing="false" onAction="#p1AttackP2" text="Attack" />
+            <Button fx:id="btnAttackP2" layoutX="782.0" layoutY="334.0" mnemonicParsing="false" onAction="#p2AttackP1" text="Attack" />
             </children>
         </Pane>
     </children>
